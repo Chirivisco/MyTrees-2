@@ -25,3 +25,6 @@ INFO - 2024-12-09 23:49:45 --> Session: Class initialized using 'CodeIgniter\Ses
 DEBUG - 2024-12-09 23:50:05 --> El método registrar ha sido llamado
 DEBUG - 2024-12-09 23:50:05 --> No se recibió el método POST
 INFO - 2024-12-09 23:50:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-12-09 23:57:33 --> El método registrar ha sido llamado
+DEBUG - 2024-12-09 23:57:33 --> No se recibió el método POST
+INFO - 2024-12-09 23:57:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
