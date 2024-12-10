@@ -7,8 +7,8 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 
-$routes->get('/amigos/register', 'Amigos::registrar');
 $routes->post('/amigos/registerFriend', 'Amigos::crearAmigo');
+$routes->get('/amigos/register', 'Amigos::registrar');
 $routes->get('/success', 'Amigos::success');
 
 $routes->get('/login', 'LoginController::index');

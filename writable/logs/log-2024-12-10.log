@@ -187,3 +187,24 @@ in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
 DEBUG - 2024-12-10 06:53:44 --> El método registrar (el original) ha sido llamado
 DEBUG - 2024-12-10 06:53:44 --> Tipo de solicitud recibida: GET
 INFO - 2024-12-10 06:53:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-12-10 07:03:35 --> El método registrar (el original) ha sido llamado
+DEBUG - 2024-12-10 07:03:35 --> Tipo de solicitud recibida: GET
+INFO - 2024-12-10 07:03:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-12-10 07:03:36 --> El método registrar (el original) ha sido llamado
+DEBUG - 2024-12-10 07:03:36 --> Tipo de solicitud recibida: GET
+INFO - 2024-12-10 07:03:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-12-10 07:07:11 --> El método registrar (el original) ha sido llamado
+DEBUG - 2024-12-10 07:07:11 --> Tipo de solicitud recibida: GET
+INFO - 2024-12-10 07:07:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-12-10 07:07:38 --> El método registrar (el original) ha sido llamado
+DEBUG - 2024-12-10 07:07:38 --> Tipo de solicitud recibida: GET
+INFO - 2024-12-10 07:07:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-12-10 07:07:40 --> El método registrar (el original) ha sido llamado
+DEBUG - 2024-12-10 07:07:40 --> Tipo de solicitud recibida: GET
+INFO - 2024-12-10 07:07:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-12-10 07:12:13 --> El método registrar (el original) ha sido llamado
+DEBUG - 2024-12-10 07:12:13 --> Tipo de solicitud recibida: GET
+INFO - 2024-12-10 07:12:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-12-10 07:12:22 --> El método registrar (el original) ha sido llamado
+DEBUG - 2024-12-10 07:12:22 --> Tipo de solicitud recibida: GET
+INFO - 2024-12-10 07:12:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
