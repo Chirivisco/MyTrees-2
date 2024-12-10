@@ -17,10 +17,10 @@ class ArbolModel extends Model
                     ->findAll(); // Devuelve todos los registros que coinciden con la condición
     }
     public function insertarArbol($data)
-    {
-        $builder = $this->db->table('arboles');
-        return $builder->insert($data);
-    }
+{
+    $builder = $this->db->table('arboles');
+    return $builder->insert($data); // Inserta los datos proporcionados
+}
     
     public function getEspecieIdByNombre($nombre)
     {
