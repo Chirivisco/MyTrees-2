@@ -16,20 +16,26 @@ class ArbolModel extends Model
         return $this->where('estado', 'Disponible')
                     ->findAll(); // Devuelve todos los registros que coinciden con la condición
     }
-
-    // Insertar un árbol en la base de datos
     public function insertarArbol($data)
-{
-    // Intenta insertar los datos en la base de datos
-    if ($this->db->table('arboles')->insert($data)) {
-        return true;
-    } else {
-        // Devuelve el error si algo falla
-        return $this->db->error();
+    {
+        $builder = $this->db->table('arboles');
+        return $builder->insert($data);
     }
-}
-  
-
+    
+    public function getEspecieIdByNombre($nombre)
+    {
+        $builder = $this->db->table('especies');
+        $builder->select('id');
+        $builder->where('nombre_comercial', $nombre);
+        $query = $builder->get();
+    
+        if ($query->getNumRows() > 0) {
+            return $query->getRow()->id;
+        }
+    
+        return false;
+    }
+    
     // Obtener todas las especies disponibles
     public function getEspecies()
     {
@@ -38,20 +44,5 @@ class ArbolModel extends Model
         $builder->select('id, nombre_comercial');
         $query = $builder->get();
         return $query->getResultArray();
-    }
-    public function getEspecieIdByNombre($nombre) {
-        // Buscar la especie por nombre
-        $this->db->select('id');
-        $this->db->from('especies');
-        $this->db->where('nombre', $nombre);
-        $query = $this->db->get();
-
-        // Si se encuentra la especie, devolver el ID
-        if ($query->num_rows() > 0) {
-            return $query->row()->id;
-        }
-
-        // Si no se encuentra la especie, devolver falso
-        return false;
     }
 }
