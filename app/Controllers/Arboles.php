@@ -39,20 +39,28 @@ public function insertarArbol()
     // Verificar si el método es POST
     if ($this->request->getMethod() == 'POST') {
         // Obtener los datos del formulario
-        $nombre = $this->request->getPost('nombre');
-        $especie = $this->request->getPost('especie');
-        $precio = $this->request->getPost('precio');
-        $estado = $this->request->getPost('estado');
+        $especie = $this->request->getPost('especie'); // Aquí se obtiene el nombre de la especie
+        $ubicacion = $this->request->getPost('ubicacion'); // Ubicación geográfica
+        $estado = $this->request->getPost('estado'); // Estado
+        $precio = $this->request->getPost('precio'); // Precio
+
+        // Verificar si las variables son null y asignar un valor por defecto si es necesario
+        $especie = trim($especie ?? '');  // Si $especie es null, asigna una cadena vacía
+        $ubicacion = trim($ubicacion ?? '');  // Lo mismo para $ubicacion
+        $estado = trim($estado ?? '');  // Y para $estado
+        $precio = trim($precio ?? '');  // Y para $precio
 
         // Validar que todos los campos requeridos están completos
-        if (empty(trim($nombre)) || empty(trim($especie)) || empty(trim($precio)) || empty(trim($estado))) {
+        if (empty($especie) || empty($ubicacion) || empty($precio) || empty($estado)) {
             $mensaje = "Todos los campos son obligatorios.";
-            log_message('debug', "Validación fallida: Nombre: $nombre, Especie: $especie, Precio: $precio, Estado: $estado");
-            return view('mensaje_view', compact('mensaje'));
-        }        
+            log_message('debug', "Validación fallida: Especie: $especie, Ubicación: $ubicacion, Precio: $precio, Estado: $estado");
+            
+            // Pasar el mensaje y los datos a la vista
+            return view('mensaje_view', ['mensaje' => $mensaje, 'datos' => compact('especie', 'ubicacion', 'precio', 'estado')]);
+        }
 
         // Depuración para verificar los datos recibidos
-        log_message('debug', "Nombre: $nombre, Especie: $especie, Precio: $precio, Estado: $estado");
+        log_message('debug', "Especie: $especie, Ubicación: $ubicacion, Precio: $precio, Estado: $estado");
 
         // Buscar el ID de la especie en la base de datos
         $especie_id = $this->arbolModel->getEspecieIdByNombre($especie);
@@ -60,15 +68,15 @@ public function insertarArbol()
         // Verificar si se encontró la especie
         if (!$especie_id) {
             $mensaje = "Especie no encontrada.";
-            return view('mensaje_view', compact('mensaje'));
+            return view('mensaje_view', ['mensaje' => $mensaje, 'datos' => compact('especie', 'ubicacion', 'precio', 'estado')]);
         }
 
         // Preparar los datos para insertar
         $data = [
-            'nombre' => $nombre,
             'especie_id' => $especie_id,
-            'precio' => $precio,
-            'estado' => $estado
+            'ubicacion_geografica' => $ubicacion,
+            'estado' => $estado,
+            'precio' => $precio
         ];
 
         log_message('debug', 'Datos preparados para inserción: ' . print_r($data, true));
@@ -82,21 +90,18 @@ public function insertarArbol()
                 $data['foto'] = $newName;
             } catch (\Exception $e) {
                 $mensaje = "Hubo un error al cargar la foto: " . $e->getMessage();
-                return view('mensaje_view', compact('mensaje'));
+                return view('mensaje_view', ['mensaje' => $mensaje, 'datos' => compact('especie', 'ubicacion', 'precio', 'estado')]);
             }
         }
 
-        // Llamar al modelo para insertar el árbol en la base de datos
+        // Realizar la inserción en la base de datos
         if ($this->arbolModel->insertarArbol($data)) {
-            // Si el árbol se inserta correctamente
-            $mensaje = "Árbol insertado exitosamente.";
-            return view('mensaje_view', compact('mensaje'));
+            $mensaje = "Árbol agregado correctamente.";
+            return view('mensaje_view', ['mensaje' => $mensaje]);
         } else {
-            // Si hubo un error al insertar el árbol
-            $dbError = $this->arbolModel->db->error();
-            $mensaje = "Hubo un error al insertar el árbol: " . $dbError['message'];
-            return view('mensaje_view', compact('mensaje'));
+            $mensaje = "Error al agregar el árbol.";
+            return view('mensaje_view', ['mensaje' => $mensaje]);
         }
     }
-}    
+}
 }
