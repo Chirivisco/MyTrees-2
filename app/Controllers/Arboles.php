@@ -33,6 +33,14 @@ class Arboles extends Controller
     // Return false if no result is found
     return false;
 }
+public function dashboard()
+    {
+        // Obtener los árboles disponibles
+        $arboles = $this->arbolModel->getArboles();
+
+        var_dump($arboles);
+        return view('dashboard_amigo', ['arboles' => $arboles]);
+    }
 
 public function insertarArbol()
 {
