@@ -7,15 +7,25 @@ use App\Models\AmigoModel;
 class Amigos extends \CodeIgniter\Controller
 {
     public function registrar()
+{
+    log_message('debug', 'El método registrar (el original) ha sido llamado');
+
+    // Log del tipo de solicitud
+    log_message('debug', 'Tipo de solicitud recibida: ' . $this->request->getMethod());
+
+    return view('amigos/register'); // Si no es POST, muestra el form
+}
+
+    public function success()
     {
-        log_message('debug', 'El método registrar (el original) ha sido llamado');
-
-        // Log del tipo de solicitud
-        log_message('debug', 'Tipo de solicitud recibida: ' . $this->request->getMethod());
-
-        return view('amigos/register'); // Si no es POST, muestra el form
+        echo "Registro exitoso";
     }
 
+    public function login()
+    {
+        return view('amigos/login');
+    }
+    
     public function crearAmigo() {
         log_message('debug', 'El método CREAR AMIGO ha sido llamado');
 
@@ -34,7 +44,6 @@ class Amigos extends \CodeIgniter\Controller
                 'pais',
                 'contrasena'
             ]);
-
             $data['rol'] = 'Amigo'; // establece por defecto el rol 'Amigo' al usuairo.
 
             $model = new AmigoModel();
@@ -57,16 +66,6 @@ class Amigos extends \CodeIgniter\Controller
         log_message('debug', 'No se recibió el método POST');
         log_message('debug', ''); //IMPRIMIR ACÁ El TIPO DE SOLICITUD OBTENIDA O REALIZADA...
         return view('amigos/register'); // Si no es POST, muestra el form
-    }
-
-    public function success()
-    {
-        echo "Registro exitoso";
-    }
-
-    public function login()
-    {
-        return view('amigos/login');
     }
 
     public function dashboard()
