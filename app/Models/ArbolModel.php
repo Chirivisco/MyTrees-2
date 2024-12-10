@@ -16,6 +16,7 @@ class ArbolModel extends Model
         return $this->where('estado', 'Disponible')
                     ->findAll(); // Devuelve todos los registros que coinciden con la condición
     }
+    
     public function insertarArbol($data)
 {
     $builder = $this->db->table('arboles');
